@@ -1,0 +1,18 @@
+# Build directories
+bin/
+obj/
+Tests/bin/
+Tests/obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+
+# Plugin binaries that get copied to root
+Settings-All.dll
+Settings-All.pdb
+
+# Cache files
+settings_cache.json
+settings_cache.json.tmp

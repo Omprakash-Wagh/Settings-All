@@ -1,0 +1,9 @@
+[
+  { "uri": "ms-settings:display", "friendlyName": "Display", "category": "System", "aliases": ["screen", "monitor", "resolution"] },
+  { "uri": "ms-settings:sound", "friendlyName": "Sound", "category": "System", "aliases": ["audio", "speakers", "microphone"] },
+  { "uri": "ms-settings:notifications", "friendlyName": "Notifications", "category": "System", "aliases": ["alerts", "actions"] },
+  { "uri": "ms-settings:bluetooth", "friendlyName": "Bluetooth", "category": "Bluetooth & Devices", "aliases": ["pairing", "wireless"] },
+  { "uri": "ms-settings:network-wifi", "friendlyName": "Wi-Fi", "category": "Network & Internet", "aliases": ["wireless", "wlan", "network"] },
+  { "uri": "ms-settings:network-mobilehotspot", "friendlyName": "Mobile Hotspot", "category": "Network & Internet", "aliases": ["tethering", "sharing", "hotspot"] },
+  { "uri": "ms-settings:windowsupdate", "friendlyName": "Windows Update", "category": "Windows Update", "aliases": ["upgrade", "patch", "check"] }
+]
