@@ -16,3 +16,6 @@ Settings-All.pdb
 # Cache files
 settings_cache.json
 settings_cache.json.tmp
+
+# Publish output
+publish_output/

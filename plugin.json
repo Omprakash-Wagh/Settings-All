@@ -4,7 +4,7 @@
   "Name": "Settings All",
   "Description": "Deep search for all Windows Settings pages by scanning SystemSettings.dll",
   "Author": "Omprakash Wagh",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "Language": "csharp",
   "Website": "",
   "IcoPath": "Images\\settings.png",
