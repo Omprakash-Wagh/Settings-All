@@ -5,5 +5,6 @@
   { "uri": "ms-settings:bluetooth", "friendlyName": "Bluetooth", "category": "Bluetooth & Devices", "aliases": ["pairing", "wireless"] },
   { "uri": "ms-settings:network-wifi", "friendlyName": "Wi-Fi", "category": "Network & Internet", "aliases": ["wireless", "wlan", "network"] },
   { "uri": "ms-settings:network-mobilehotspot", "friendlyName": "Mobile Hotspot", "category": "Network & Internet", "aliases": ["tethering", "sharing", "hotspot"] },
-  { "uri": "ms-settings:windowsupdate", "friendlyName": "Windows Update", "category": "Windows Update", "aliases": ["upgrade", "patch", "check"] }
+  { "uri": "ms-settings:windowsupdate", "friendlyName": "Windows Update", "category": "Windows Update", "aliases": ["upgrade", "patch", "check"] },
+  { "uri": "ms-settings:network-advancedsharing", "friendlyName": "Advanced sharing settings", "category": "Network & Internet", "aliases": ["network discovery", "file sharing", "printer sharing", "public folders"] }
 ]

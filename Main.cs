@@ -204,25 +204,30 @@ public class Main : IAsyncPlugin, IContextMenu, ISettingProvider, IAsyncDisposab
                           .ToList();
         }
 
-        var results = new List<(SettingsEntry Entry, int SortScore, bool HasHit)>();
+        var results = new List<(SettingsEntry Entry, int Score, List<int> Highlight)>();
+
+        var filteredTokens = query.SearchTerms.Where(t => t.Length >= 2).ToArray();
+        var highlightTerms = query.SearchTerms.Length == 1 ? query.SearchTerms : filteredTokens;
+        bool isMultiTerm = query.SearchTerms.Length >= 2;
 
         foreach (var entry in catalog)
         {
             token.ThrowIfCancellationRequested();
 
-            if (ScoreCalculator.TryCalculateScore(entry, search, (q, t) => _context.API.FuzzySearch(q, t).Score, out int sortScore, out bool hasHit))
+            if (ScoreCalculator.TryCalculateScore(entry, search, filteredTokens, highlightTerms, isMultiTerm, _context.API.FuzzySearch, out int score, out List<int> highlight))
             {
-                results.Add((entry, sortScore, hasHit));
+                results.Add((entry, score, highlight));
             }
         }
 
-        return results.OrderByDescending(r => r.HasHit)
-                      .ThenByDescending(r => r.SortScore)
-                      .Select(r => CreateResult(r.Entry, r.SortScore))
+        return results.OrderByDescending(r => r.Score)
+                      .ThenBy(r => r.Entry.FriendlyName, StringComparer.OrdinalIgnoreCase)
+                      .ThenBy(r => r.Entry.Uri, StringComparer.OrdinalIgnoreCase)
+                      .Select(r => CreateResult(r.Entry, r.Score, r.Highlight))
                       .ToList();
     }
 
-    private Result CreateResult(SettingsEntry entry, int score = 0)
+    private Result CreateResult(SettingsEntry entry, int score = 0, List<int> highlight = null)
     {
         return new Result
         {
@@ -230,6 +235,7 @@ public class Main : IAsyncPlugin, IContextMenu, ISettingProvider, IAsyncDisposab
             SubTitle = $"{entry.Category} · {entry.Uri}",
             IcoPath = _context.CurrentPluginMetadata.IcoPath,
             Score = score,
+            TitleHighlightData = highlight,
             Action = _ =>
             {
                 if (!DllScanner.IsValidUri(entry.Uri))
